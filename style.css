@@ -7,6 +7,7 @@ body {
 header {
     background-color: #ff4081;
     padding: 20px;
+    overflow: hidden;
 }
 
 header h1 {
@@ -33,6 +34,7 @@ nav li {
 nav a {
     color: #fff;
     text-decoration: none;
+    font-size: 18px;
 }
 
 #hero {
@@ -54,37 +56,39 @@ nav a {
     margin-bottom: 40px;
 }
 
-.button {
-    background-color: #fff;
-    color: #ff4081;
-    padding: 15px 30px;
-    text-decoration: none;
-    font-size: 18px;
-    border-radius: 5px;
+.app-store-button img {
+    width: 200px;
 }
 
-#funksjoner {
+#hva-vi-tilbyr {
     padding: 60px 20px;
     text-align: center;
 }
 
-#funksjoner h2 {
+#hva-vi-tilbyr h2 {
     font-size: 36px;
     margin-bottom: 40px;
 }
 
-.funksjoner-container {
+.tilbud-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.funksjon {
+.tilbud {
     width: 300px;
     margin: 20px;
+    text-align: center;
 }
 
-.funksjon h3 {
+.tilbud img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.tilbud h3 {
     font-size: 24px;
     color: #ff4081;
     margin-bottom: 10px;
@@ -106,4 +110,11 @@ footer {
     color: #fff;
     padding: 20px;
     text-align: center;
+}
+
+/* Stiler for 3D-modellen */
+model-viewer {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
 }
