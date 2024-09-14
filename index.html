@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flickzit - Master Your Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             color: #333;
@@ -27,6 +28,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #fff;
+            font-family: 'Montserrat', sans-serif;
         }
 
         header ul {
@@ -43,6 +45,7 @@
         header ul li a {
             text-decoration: none;
             color: #fff;
+            font-weight: bold;
         }
 
         .hero {
@@ -60,6 +63,7 @@
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .hero p {
@@ -73,6 +77,7 @@
             padding: 15px 30px;
             text-decoration: none;
             border-radius: 5px;
+            font-size: 18px;
         }
 
         .about, .skills, .features {
@@ -95,20 +100,36 @@
             background: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        .features ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .features ul li {
+        .features {
             background: #ff69b4;
             color: #fff;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            padding: 60px 20px;
+        }
+
+        .features h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .features .feature-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .features .feature-list li {
+            font-size: 20px;
+            margin: 15px 0;
+            padding: 15px 30px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
         }
 
         footer {
@@ -116,6 +137,52 @@
             color: #fff;
             padding: 20px;
             text-align: center;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .cta-button {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+
+            .features h2 {
+                font-size: 28px;
+            }
+
+            .features .feature-list li {
+                font-size: 18px;
+                padding: 12px 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .cta-button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .features h2 {
+                font-size: 24px;
+            }
+
+            .features .feature-list li {
+                font-size: 16px;
+                padding: 10px 18px;
+            }
         }
     </style>
 </head>
@@ -167,11 +234,11 @@
 
     <section id="features" class="features">
         <h2>Features</h2>
-        <ul>
-            <li>Interactive 3D models</li>
-            <li>Progressive skill levels</li>
-            <li>User-friendly interface</li>
-            <li>Designed for young gymnasts and all skill levels</li>
+        <ul class="feature-list">
+            <li>Interactive 3D Models</li>
+            <li>Progressive Skill Levels</li>
+            <li>User-Friendly Interface</li>
+            <li>Designed for All Skill Levels</li>
         </ul>
     </section>
 
