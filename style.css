@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+}
+
+header {
+    background-color: #ff4081;
+    padding: 20px;
+}
+
+header h1 {
+    color: #fff;
+    margin: 0;
+    display: inline-block;
+}
+
+nav {
+    float: right;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#hero {
+    background-image: url('hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+#hero h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+#hero p {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.button {
+    background-color: #fff;
+    color: #ff4081;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#funksjoner {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#funksjoner h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.funksjoner-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.funksjon {
+    width: 300px;
+    margin: 20px;
+}
+
+.funksjon h3 {
+    font-size: 24px;
+    color: #ff4081;
+    margin-bottom: 10px;
+}
+
+#om-oss {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#om-oss h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
