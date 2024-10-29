@@ -7,53 +7,54 @@
     <meta name="locale" content="en">
     <meta name="robots" content="none, noarchive">
     <meta name="googlebot" content="noarchive">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Include the Azure AD B2C script -->
     <script src="https://aka.ms/aadb2c/js/1"></script>
 
     <!-- Custom CSS styles -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f0f4f8;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             color: #333;
+            background: linear-gradient(135deg, #6F42C1 0%, #007BFF 100%);
+            background-attachment: fixed;
         }
 
         .container {
             max-width: 400px;
             margin: 60px auto;
             padding: 40px 30px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .container .logo {
+        .logo {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .container .logo img {
-            max-width: 150px;
+        .logo img {
+            max-width: 120px;
         }
 
-        .container h1 {
+        h1 {
             text-align: center;
-            font-size: 1.6em;
-            color: #0078d4;
+            font-size: 1.8em;
+            color: #007BFF;
             margin-bottom: 10px;
             line-height: 1.2;
         }
 
-        .container p {
+        p {
             text-align: center;
             font-size: 1em;
-            color: #666;
+            color: #555;
             margin-bottom: 30px;
         }
 
@@ -61,54 +62,68 @@
         #api input, #api select {
             width: 100%;
             padding: 14px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            border: none;
             border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
-        }
-
-        #api input[type="checkbox"] {
-            width: auto;
-            margin-right: 10px;
-        }
-
-        #api label.checkbox-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #555;
+            background-color: #f1f1f1;
+            color: #333;
         }
 
         #api input:focus {
-            border-color: #00BFA5;
+            background-color: #fff;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
         }
 
         #api button[type="submit"] {
             width: 100%;
             padding: 14px;
-            background-color: #00BFA5;
+            background-color: #007BFF;
             color: #fff;
             border: none;
             border-radius: 8px;
             font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: 10px;
         }
 
         #api button[type="submit"]:hover {
-            background-color: #009688;
+            background-color: #0056b3;
+        }
+
+        /* Terms consent checkbox */
+        #api label.checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        #api input[type="checkbox"] {
+            margin-right: 10px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        #api label.checkbox-label a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        #api label.checkbox-label a:hover {
+            text-decoration: underline;
         }
 
         /* Error message styling */
         #api span.error {
-            color: #d32f2f;
+            color: #d9534f;
             font-size: 14px;
-            margin-top: -10px;
+            margin-top: -15px;
             margin-bottom: 15px;
             display: block;
         }
@@ -125,8 +140,8 @@
                 padding: 30px 20px;
             }
 
-            .container h1 {
-                font-size: 1.4em;
+            h1 {
+                font-size: 1.6em;
             }
 
             #api button[type="submit"],
@@ -140,11 +155,11 @@
 <body>
     <div class="container">
         <div class="logo">
-            <!-- Replace 'logo.png' with the path to your actual logo image -->
-            <img src="logo.png" alt="Flickzit Logo">
+            <!-- Replace 'flickzit-logo.png' with the path to your actual logo image -->
+            <img src="flickzit-logo.png" alt="Flickzit Logo">
         </div>
         <h1>Create Your Account</h1>
-        <p>Sign up to get started</p>
+        <p>Join Flickzit and start your journey</p>
 
         <!-- Azure AD B2C will inject the UI controls into this div -->
         <div id="api"></div>
@@ -187,4 +202,5 @@
     </script>
 </body>
 </html>
+
 
