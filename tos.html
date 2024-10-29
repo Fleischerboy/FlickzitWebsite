@@ -3,16 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Signup - Azure B2C</title>
-  <meta name="api" content="combinedSigninAndSignup">
-  <script src="https://aka.ms/aadb2c/js/1"></script>
+    <title>Sign Up</title>
     <style>
-
-        
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signup-container {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .tos-section {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #555;
+        }
     </style>
 </head>
 <body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form id="signup-form" method="post">
+            <!-- Include any fields from Azure B2C -->
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
 
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+
+            <!-- ToS Checkbox -->
+            <div class="tos-section">
+                <input type="checkbox" id="tos" name="tos" required>
+                <label for="tos">
+                    I agree to the <a href="path_to_your_tos.html" target="_blank">Terms of Service</a>
+                </label>
+            </div>
+
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
 </body>
 </html>
 
