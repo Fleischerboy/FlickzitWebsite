@@ -94,10 +94,32 @@
             background-color: #0056b3;
         }
 
+        /* Terms of Service content styling */
+        .tos-container {
+            max-height: 200px;
+            overflow-y: scroll;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .tos-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .tos-container::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
         /* Terms consent checkbox */
         #api label.checkbox-label {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 20px;
             font-size: 14px;
             color: #555;
@@ -106,17 +128,26 @@
 
         #api input[type="checkbox"] {
             margin-right: 10px;
+            margin-top: 2px;
             width: auto;
             cursor: pointer;
         }
 
-        #api label.checkbox-label a {
-            color: #007BFF;
-            text-decoration: none;
+        /* Remove list dots from field titles */
+        #api ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
         }
 
-        #api label.checkbox-label a:hover {
-            text-decoration: underline;
+        #api li {
+            margin-bottom: 0;
+        }
+
+        /* Fix input alignment */
+        #api > div {
+            display: flex;
+            flex-direction: column;
         }
 
         /* Error message styling */
@@ -148,6 +179,11 @@
             #api input {
                 font-size: 16px;
                 padding: 12px;
+            }
+
+            .tos-container {
+                max-height: 150px;
+                padding: 10px;
             }
         }
     </style>
@@ -182,22 +218,56 @@
             // Modify the terms consent checkbox
             var termsConsentField = document.querySelector('#api input[name="extension_termsConsent"]');
             if (termsConsentField) {
-                // Wrap the checkbox in a label
+                // Remove the parent list item to eliminate any list dots
+                var parentLi = termsConsentField.closest('li');
+                if (parentLi) {
+                    parentLi.parentNode.removeChild(parentLi);
+                }
+
+                // Create a new container for the ToS content and checkbox
+                var tosContainer = document.createElement('div');
+
+                // Create the ToS content area
+                var tosContent = document.createElement('div');
+                tosContent.className = 'tos-container';
+                tosContent.innerHTML = `<!-- Insert your Terms of Service content here -->`;
+                tosContainer.appendChild(tosContent);
+
+                // Create the checkbox label
                 var checkboxLabel = document.createElement('label');
                 checkboxLabel.className = 'checkbox-label';
-                termsConsentField.parentNode.insertBefore(checkboxLabel, termsConsentField);
+
+                // Append the checkbox to the label
                 checkboxLabel.appendChild(termsConsentField);
 
+                // Create the label text
                 var labelText = document.createElement('span');
-                labelText.innerHTML = 'I agree to the <a href="terms.html" target="_blank">Terms of Service</a>';
+                labelText.innerHTML = 'I have read and agree to the Terms of Service';
                 checkboxLabel.appendChild(labelText);
+
+                tosContainer.appendChild(checkboxLabel);
+
+                // Insert the ToS container before the submit button
+                var submitButton = document.querySelector('#api button[type="submit"]');
+                if (submitButton) {
+                    submitButton.parentNode.insertBefore(tosContainer, submitButton);
+                }
             }
 
-            // Change submit button text
-            var submitButton = document.querySelector('#api button[type="submit"]');
-            if (submitButton) {
-                submitButton.textContent = 'Sign Up';
-            }
+            // Fix input alignment
+            var apiDivs = document.querySelectorAll('#api > div');
+            apiDivs.forEach(function(div) {
+                div.style.display = 'flex';
+                div.style.flexDirection = 'column';
+            });
+
+            // Remove any list styles from ul elements
+            var ulElements = document.querySelectorAll('#api ul');
+            ulElements.forEach(function(ul) {
+                ul.style.listStyleType = 'none';
+                ul.style.paddingLeft = '0';
+                ul.style.margin = '0';
+            });
         });
     </script>
 </body>
