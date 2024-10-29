@@ -60,6 +60,19 @@ button[type="submit"] {
             <button type="submit" id="submitBtn">Sign Up</button>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const tosCheckbox = document.getElementById("tosCheckbox");
+    const submitBtn = document.getElementById("submitBtn");
+
+    tosCheckbox.addEventListener("change", function () {
+        submitBtn.disabled = !tosCheckbox.checked;
+    });
+
+    // Initial check to disable the submit button
+    submitBtn.disabled = !tosCheckbox.checked;
+});
+    </script>
 </body>
 </html>
 
