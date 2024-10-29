@@ -2,20 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Terms and Conditions - Flickzit</title>
+    <title>Sign Up - Flickzit</title>
+    <!-- Azure AD B2C JavaScript library -->
     <script src="https://aka.ms/aadb2c/js/1"></script>
+    <!-- Custom Styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
             max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         h1, h2 {
             color: #333;
         }
         h1 {
             text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        p, ul {
+            color: #555;
+            line-height: 1.6;
         }
         ul {
             list-style-type: disc;
@@ -25,19 +43,79 @@
             color: #0066cc;
             text-decoration: none;
         }
+        a:hover {
+            text-decoration: underline;
+        }
         strong {
             font-weight: bold;
+        }
+        #terms-container {
+            overflow-y: auto;
+            max-height: 300px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        #consent-label {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        #consent-label input {
+            margin-right: 10px;
+        }
+        #error {
+            color: red;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #0066cc;
+        }
+        /* Azure AD B2C styles */
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 12px 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"], button[type="submit"] {
+            width: 100%;
+            background-color: #0078D4;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover, button[type="submit"]:hover {
+            background-color: #005A9E;
         }
     </style>
 </head>
 <body>
 
-<h1>{{pageTitle}}</h1>
-<h1>TERMS AND CONDITIONS</h1>
+    <div class="container">
+        <h1>Sign Up for Flickzit</h1>
 
-<div id="api"></div>
+        <!-- Azure AD B2C will inject sign-up controls here -->
+        <div id="api"></div>
 
-<div id="error" style="color: red;"></div>
+        <!-- Error messages -->
+        <div id="error"></div>
+
+        <!-- Terms and Conditions -->
+        <div id="terms-container">
+           <h1>TERMS AND CONDITIONS</h1>
     
 <p>Welcome to Flickzit!</p>
 
@@ -228,16 +306,46 @@
 <p><strong>Fleischer App Studio - Flickzit</strong><br>
 Email: <a href="mailto:contactflickzit@gmail.com">contactflickzit@gmail.com</a></p>
 
+        </div>
 
-<label>
-    <input type="checkbox" name="termsConsent" required>
-    I agree to the Terms of Service
-</label>
+        <!-- Consent Checkbox -->
+        <label id="consent-label">
+            <input type="checkbox" id="termsConsent" name="termsConsent" required>
+            I agree to the Terms and Conditions
+        </label>
 
-<footer>
-     <p><a href="/">Back to Home</a></p>
-</footer>
-    
+        <!-- Footer -->
+        <div class="footer">
+            <p><a href="/">Back to Home</a></p>
+        </div>
+    </div>
+
+    <!-- JavaScript to integrate the consent checkbox into the form -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait until the Azure AD B2C form is loaded
+            var checkExist = setInterval(function() {
+                var b2cForm = document.querySelector('form');
+                if (b2cForm) {
+                    clearInterval(checkExist);
+
+                    // Move the Terms of Service content into the form
+                    var termsContainer = document.getElementById('terms-container');
+                    b2cForm.appendChild(termsContainer);
+
+                    // Move the consent checkbox into the form
+                    var consentLabel = document.getElementById('consent-label');
+                    b2cForm.appendChild(consentLabel);
+
+                    // Adjust the error message placement
+                    var errorDiv = document.getElementById('error');
+                    b2cForm.insertBefore(errorDiv, b2cForm.firstChild);
+                }
+            }, 100);
+        });
+    </script>
+
 </body>
 </html>
+
 
