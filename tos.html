@@ -77,7 +77,7 @@
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
         }
 
-        #api button[type="submit"] {
+        #api button.button {
             width: 100%;
             padding: 14px;
             background-color: #007BFF;
@@ -88,9 +88,10 @@
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-top: 10px;
         }
 
-        #api button[type="submit"]:hover {
+        #api button.button:hover {
             background-color: #0056b3;
         }
 
@@ -117,19 +118,22 @@
         }
 
         /* Terms consent checkbox */
-        #api label.checkbox-label {
+        #api .checkbox-container {
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
-            font-size: 14px;
+            font-size: 16px;
             color: #555;
+        }
+
+        #api .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 3px;
+            width: auto;
             cursor: pointer;
         }
 
-        #api input[type="checkbox"] {
-            margin-right: 10px;
-            margin-top: 2px;
-            width: auto;
+        #api .checkbox-container label {
             cursor: pointer;
         }
 
@@ -175,7 +179,7 @@
                 font-size: 1.6em;
             }
 
-            #api button[type="submit"],
+            #api button.button,
             #api input {
                 font-size: 16px;
                 padding: 12px;
@@ -230,25 +234,30 @@
                 // Create the ToS content area
                 var tosContent = document.createElement('div');
                 tosContent.className = 'tos-container';
-                tosContent.innerHTML = `<!-- Insert your Terms of Service content here -->`;
+                tosContent.innerHTML = `
+                    <!-- Insert your Terms of Service content here -->
+                    <h2>Terms of Service</h2>
+                    <p>Welcome to Flickzit. These terms and conditions outline the rules and regulations for the use of Flickzit's services...</p>
+                    <!-- Continue with the rest of your ToS content -->
+                `;
                 tosContainer.appendChild(tosContent);
 
-                // Create the checkbox label
+                // Create the checkbox container
+                var checkboxContainer = document.createElement('div');
+                checkboxContainer.className = 'checkbox-container';
+
+                // Move the checkbox input into the checkbox container
+                checkboxContainer.appendChild(termsConsentField);
+
+                // Create the label for the checkbox
                 var checkboxLabel = document.createElement('label');
-                checkboxLabel.className = 'checkbox-label';
+                checkboxLabel.textContent = 'I have read and agree to the Terms of Service';
+                checkboxContainer.appendChild(checkboxLabel);
 
-                // Append the checkbox to the label
-                checkboxLabel.appendChild(termsConsentField);
-
-                // Create the label text
-                var labelText = document.createElement('span');
-                labelText.innerHTML = 'I have read and agree to the Terms of Service';
-                checkboxLabel.appendChild(labelText);
-
-                tosContainer.appendChild(checkboxLabel);
+                tosContainer.appendChild(checkboxContainer);
 
                 // Insert the ToS container before the submit button
-                var submitButton = document.querySelector('#api button[type="submit"]');
+                var submitButton = document.querySelector('#api button.button');
                 if (submitButton) {
                     submitButton.parentNode.insertBefore(tosContainer, submitButton);
                 }
@@ -268,6 +277,49 @@
                 ul.style.paddingLeft = '0';
                 ul.style.margin = '0';
             });
+
+            // Increase font size for better readability
+            var allTextElements = document.querySelectorAll('#api input, #api label, #api button.button, .tos-container, #api .checkbox-container');
+            allTextElements.forEach(function(element) {
+                element.style.fontSize = '16px';
+            });
+
+            // Adjust verification buttons and inputs
+            var verificationButtons = document.querySelectorAll('#api button');
+            verificationButtons.forEach(function(button) {
+                button.style.width = '100%';
+                button.style.padding = '14px';
+                button.style.marginBottom = '20px';
+                button.style.border = 'none';
+                button.style.borderRadius = '8px';
+                button.style.fontSize = '16px';
+                button.style.fontWeight = '600';
+                button.style.cursor = 'pointer';
+                button.style.backgroundColor = '#007BFF';
+                button.style.color = '#fff';
+                button.style.transition = 'background-color 0.3s';
+                button.addEventListener('mouseover', function() {
+                    button.style.backgroundColor = '#0056b3';
+                });
+                button.addEventListener('mouseout', function() {
+                    button.style.backgroundColor = '#007BFF';
+                });
+            });
+
+            // Ensure verification inputs are styled properly
+            var verificationInputs = document.querySelectorAll('#api input[type="text"]');
+            verificationInputs.forEach(function(input) {
+                input.style.width = '100%';
+                input.style.padding = '14px';
+                input.style.marginBottom = '20px';
+                input.style.border = 'none';
+                input.style.borderRadius = '8px';
+                input.style.fontSize = '16px';
+                input.style.boxSizing = 'border-box';
+                input.style.backgroundColor = '#f1f1f1';
+                input.style.color = '#333';
+            });
+
         });
     </script>
 </body>
