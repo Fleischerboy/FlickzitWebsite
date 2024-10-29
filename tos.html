@@ -2,104 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Flickzit</title>
     <!-- Azure AD B2C JavaScript library -->
     <script src="https://aka.ms/aadb2c/js/1"></script>
     <!-- Custom Styles -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 25px 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        h2 {
-            margin-top: 20px;
-        }
-        p, ul {
-            color: #555;
-            line-height: 1.6;
-        }
-        ul {
-            list-style-type: disc;
-            margin-left: 40px;
-        }
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        strong {
-            font-weight: bold;
-        }
-        #terms-container {
-            overflow-y: auto;
-            max-height: 300px;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        #consent-label {
-            display: block;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-        #consent-label input {
-            margin-right: 10px;
-        }
-        #error {
-            color: red;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #0066cc;
-        }
-        /* Azure AD B2C styles */
-        input[type="text"], input[type="password"], input[type="email"] {
-            width: 100%;
-            padding: 12px 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"], button[type="submit"] {
-            width: 100%;
-            background-color: #0078D4;
-            color: white;
-            padding: 14px 20px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        input[type="submit"]:hover, button[type="submit"]:hover {
-            background-color: #005A9E;
-        }
+     body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+p, ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+#terms-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+#consent-label {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #0078D4;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #005A9E;
+}
+
+.footer {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+@media (min-width: 600px) {
+    .container {
+        max-width: 500px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+}
     </style>
 </head>
 <body>
@@ -314,10 +313,6 @@ Email: <a href="mailto:contactflickzit@gmail.com">contactflickzit@gmail.com</a><
             I agree to the Terms and Conditions
         </label>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p><a href="/">Back to Home</a></p>
-        </div>
     </div>
 
     <!-- JavaScript to integrate the consent checkbox into the form -->
