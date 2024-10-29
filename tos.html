@@ -3,343 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Flickzit</title>
-    <!-- Azure AD B2C JavaScript library -->
-    <script src="https://aka.ms/aadb2c/js/1"></script>
-    <!-- Custom Styles -->
+    <title>Custom Signup - Azure B2C</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
     <style>
-     body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 100%;
+.signup-container {
+    max-width: 400px;
     margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 0;
-    box-shadow: none;
+    padding: 1em;
+    text-align: center;
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.form-group {
+    margin-bottom: 1em;
 }
 
-h2 {
-    font-size: 18px;
-    margin-top: 15px;
+label {
+    display: block;
+    margin-bottom: 0.5em;
 }
 
-p, ul {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-ul {
-    padding-left: 20px;
-}
-
-#terms-container {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
-    font-size: 12px;
-}
-
-#consent-label {
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="number"] {
+input[type="email"], input[type="password"] {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.5em;
+    font-size: 1em;
 }
 
 button[type="submit"] {
-    width: 100%;
-    padding: 14px;
-    background-color: #0078D4;
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
+    padding: 0.5em 1em;
+    font-size: 1em;
     cursor: pointer;
 }
-
-button[type="submit"]:hover {
-    background-color: #005A9E;
-}
-
-.footer {
-    font-size: 12px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.footer a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-@media (min-width: 600px) {
-    .container {
-        max-width: 500px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-}
+        
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>Sign Up for Flickzit</h1>
-
-        <!-- Azure AD B2C will inject sign-up controls here -->
-        <div id="api"></div>
-
-        <!-- Error messages -->
-        <div id="error"></div>
-
-        <!-- Terms and Conditions -->
-        <div id="terms-container">
-           <h1>TERMS AND CONDITIONS</h1>
-    
-<p>Welcome to Flickzit!</p>
-
-<p><strong>Flickzit</strong> is owned and operated by Fleischer App Studio.</p>
-
-<p>These are the terms and conditions for:</p>
-
-<ul>
-    <li>Flickzit mobile application (Available on the App Store).</li>
-    <li><a href="https://flickzit.com">https://flickzit.com</a></li>
-</ul>
-
-<p>The following terms and conditions apply to your use of the Flickzit platform and the services available on the platform. This includes mobile versions, as well as any other version of Flickzit accessible via desktop, tablet, social media, or other devices.</p>
-
-<p>By using the platform, you agree to these terms and conditions and our privacy policy. In these terms and conditions, the words “platform” refer to the Flickzit mobile application and the Flickzit website together, "we", "us", "our", and "Flickzit", refers to Fleischer App Studio, and "you", and "user", refers to you, the Flickzit user.</p>
-
-<p><strong>PLEASE READ THESE CONDITIONS CAREFULLY BEFORE USING THE SERVICES AND FUNCTIONALITIES AVAILABLE ON THE PLATFORM.</strong></p>
-
-<h2>1. ELIGIBILITY</h2>
-
-<p>By using the platform, you agree to be bound by this agreement. If you do not agree to the terms of this agreement, you must not use our services and our platform. We may modify this agreement from time to time, and such modification will be effective upon posting on the platform. You agree to be bound by any modifications to these terms and conditions when you use Flickzit following the posting of such modification; therefore, it is important that you review this agreement regularly.</p>
-
-<p>By using the platform, you represent and warrant that you have the full right, power, and authority to enter into this agreement and to fully perform all of your obligations hereunder. You further represent and warrant that you are not under any legal incapacity or contractual restriction that would prevent you from entering into this agreement.</p>
-
-<h2>2. NOTIFICATIONS AND NEWSLETTER</h2>
-
-<p>By providing your email address to Flickzit, you agree that we may use your email address to send you notifications about Flickzit. We may also use your email address to send you notifications and other messages, such as changes to service features, news, and special content. If you do not wish to receive these emails, you may opt-out of receiving them by submitting your unsubscribe request through the contact information or by using the "unsubscribe" option in the emails. Opting out may prevent you from receiving notifications and mailings about updates, news, or special content.</p>
-
-<h2>3. DESCRIPTION OF THE PLATFORM</h2>
-
-<p>Flickzit is an educational platform designed to support users in learning and enhancing various physical skills and techniques, with a core focus on gymnastics. The platform offers a range of content, allowing users to view skill elements, select their proficiency level, and access a variety of drills and exercises. Our goal is to provide a personalized, safe, and engaging learning experience, empowering users to progress at their own pace across an expanding collection of activities. As Flickzit evolves, new drills and skill-building content will be introduced, creating a dynamic resource for users interested in physical and technical skill development.</p>
-
-<h2>4. ACCOUNT</h2>
-
-<p>To register on the Flickzit platform as a user, you must fill out the registration form available on the platform, provide an email address, and create a password, or you can register and log in through your Google account. You are responsible for maintaining the confidentiality of your password and account information and are fully responsible for all activities that occur under your password or account. You agree to (a) immediately notify Flickzit of any unauthorized use of your password or account or any other breach of security, and (b) ensure that you log out of your account at the end of each session. You may never use another user's account without Flickzit's prior authorization. Flickzit will not be liable for any loss or damage arising from your breach of this agreement.</p>
-
-<p>Users may cancel their accounts at any time and for any reason through the account settings or by sending us their request through our contact information. Such cancellation will only result in the deletion of the account and the deletion of all personal data provided to Flickzit.</p>
-
-<p>Flickzit reserves the right to terminate your account or your access immediately, with or without notice, and without liability to you, if Flickzit believes that you have violated any provision of these terms and conditions.</p>
-
-<h2>5. SUBSCRIPTIONS</h2>
-
-<p>Flickzit offers a single monthly subscription level, which provides full access to all content available on the platform. Although there is a small amount of free content, this is very limited, and full access is only available to subscribers. By purchasing a subscription, the user agrees that the subscription automatically renews each month. Renewals are automatically billed and charged using the payment method provided during registration, such as credit card, debit card, or other payment methods supported by Apple's App Store. Flickzit does not handle payments directly; they are processed through Apple's App Store using RevenueCat as a subscription management intermediary.</p>
-
-<p>Users have the option to cancel their subscription at any time from their account. Once cancelled, the subscription will remain active until the next billing date, at which time access to subscriber-only content will be revoked. The cancellation process and payment management is also done through Apple's App Store, where users can review their subscription status, payment method, and other pertinent details.</p>
-
-<h2>6. LIMITATION OF LIABILITY</h2>
-
-<p>Flickzit provides educational content and fitness-related exercises for the purpose of improving and developing physical skills. However, use of the platform and participation in the suggested exercises involve risks inherent in physical activities, including, but not limited to, physical injury, fatigue, or exhaustion. Users assume full responsibility for their participation in any activity or exercise proposed on the platform. Before beginning any physical training program, it is recommended that you consult a medical professional or certified trainer to ensure that the exercises are appropriate for your current physical condition.</p>
-
-<p>Flickzit is not liable for any injury, damage, or harm, direct or indirect, arising from the use of the platform or the suggested exercises and activities. The platform is provided “as is,” with no warranties of any kind as to the accuracy, suitability, or expected results of the exercises provided. Flickzit does not guarantee that the exercises will be suitable for all users or that the content will meet the specific objectives of the exercises. Each user's results may vary depending on a variety of factors, including physical condition and level of personal commitment.</p>
-
-<p>Flickzit also disclaims any responsibility for service interruptions, technical errors, loss of data, or any other issues that may affect the availability or functionality of the platform. Users must ensure that their device and internet connection are adequate to access and use the platform. In no event shall Flickzit be liable for indirect, special, incidental, or consequential damages resulting from the use or inability to use the platform, even if Flickzit has been advised of the possibility of such damages.</p>
-
-<p>You agree that any decision to use the content provided by Flickzit, including physical exercises, is at your own risk. Further, Flickzit shall not be liable for any acts or omissions of third parties, including problems with payment processors or associated third-party services used to manage subscriptions. The user assumes responsibility for verifying the suitability and safe use of any equipment or physical environment necessary to perform the recommended exercises.</p>
-
-<h2>7. LICENSE TO USE THE PLATFORM</h2>
-
-<p>Flickzit grants you a personal, worldwide, royalty-free, non-assignable, non-exclusive license to use the Flickzit platform and downloadable through the App Store free of charge, including but not limited to modified versions, updates, upgrades, enhancements, additions, and copies, if any. This license is for the sole purpose of allowing you to use the features available on the platform in the manner permitted by these terms.</p>
-
-<p>The user agrees not to use the platform negligently, for fraudulent purposes, or in an unlawful manner. Likewise, the user agrees not to partake in any conduct or action that could damage the image, interests, or rights of the Flickzit platform or third parties.</p>
-
-<p>Flickzit reserves the right to terminate your access immediately, with or without notice, and without liability to you, if Flickzit believes that you have violated any provision contained in these terms.</p>
-
-<h2>8. COPYRIGHT</h2>
-
-<p>All materials on the platform, including, without limitation, names, logos, trademarks, images, text, animations, graphics, videos, photographs, illustrations, software, and other elements are protected by copyrights, trademarks, and/or other intellectual property rights owned and controlled by Flickzit (Fleischer App Studio). You acknowledge and agree that all materials on the platform are available for personal, limited, non-commercial use only. Except as specifically provided herein, no material may be copied, reproduced, republished, sold, downloaded, posted, transmitted, or distributed in any way, or otherwise used for any purpose, by any person or entity, without the prior express written permission of Flickzit. You may not add to, delete, distort, or otherwise modify the material. Any unauthorized attempt to modify any material, to defeat or circumvent any security feature, or to use Flickzit or any part of the material for any purpose other than its intended purpose is strictly prohibited.</p>
-
-<h2>9. COPYRIGHT COMPLAINTS</h2>
-
-<p>Flickzit will respond to all inquiries, complaints, and claims related to alleged infringement by breach or violation of provisions contained in Norwegian and international copyright and intellectual property laws and regulations. Flickzit respects the intellectual property of others and expects users to do the same. If you believe, in good faith, that any material provided on the website infringes your copyright or other intellectual property rights, please submit your request via our contact information, with the following information:</p>
-
-<ul>
-    <li>Identification of the intellectual property right that is allegedly infringed. All relevant registration numbers, or a statement concerning the ownership of the work, should be included.</li>
-    <li>A statement specifically identifying the location of the infringing material, with enough detail that Flickzit may find it on the platform.</li>
-    <li>Your name, address, telephone number, and e-mail address.</li>
-    <li>A statement by you that you have a good faith belief that the use of the allegedly infringing material is not authorized by the owner of the rights, or its agents, or by law.</li>
-    <li>A statement by you, made under penalty of perjury, that the information in your notice is accurate, and that you are the copyright owner or authorized to act on the copyright owner's behalf.</li>
-    <li>An electronic or physical signature of the owner of the copyright or the person authorized to act on behalf of the owner of the copyright interest.</li>
-</ul>
-
-<h2>10. PROHIBITED ACTIVITIES</h2>
-
-<p>The following activities are prohibited:</p>
-
-<ul>
-    <li>Access, monitor, reproduce, distribute, transmit, broadcast, display, sell, license, copy, or otherwise exploit any content of the platform, including, but not limited to, using any robot, spider, scraper, or other automated means or any manual process for any purpose not in accordance with these terms.</li>
-    <li>Take any action that imposes, or may impose, in our discretion, an unreasonable or disproportionately large load on our infrastructure.</li>
-    <li>Deep-link to any part of our platform for any purpose without our express written permission.</li>
-    <li>"Frame", "mirror", or otherwise incorporate any part of the platform into any other platform or service without our prior written permission.</li>
-    <li>Attempt to modify, translate, adapt, edit, decompile, disassemble, or reverse engineer any software used by Flickzit.</li>
-    <li>Evade, disable, or otherwise interfere with security-related features of the platform or features which prevent or restrict the use or copying of any content.</li>
-</ul>
-
-<h2>11. DISCLAIMER OF WARRANTIES</h2>
-
-<p>Due to the nature of the Internet, Flickzit provides and maintains the platform on an “as is”, “as available” basis and does not promise that use of the platform will be uninterrupted or error-free. We shall not be liable to the user or any third party if we are unable to provide our platform and services for any reason beyond our control.</p>
-
-<p>Our platform may from time to time contain links to other platforms which are not under the control of and are not maintained by us. These links are provided for your convenience only, and we are not responsible for the content of those sites.</p>
-
-<p>Except as provided above, we can give no other warranties, conditions, or other terms, express or implied, statutory or otherwise, and all such terms are hereby excluded to the maximum extent permitted by law.</p>
-
-<p>You will be responsible for any breach of these terms by you, and if you use the platform in breach of these terms, you will be liable to and will reimburse Flickzit for any loss or damage caused as a result.</p>
-
-<p>Flickzit shall not be liable for any amount for any failure to perform any obligation hereunder if such failure is due to the occurrence of any unforeseen event beyond its reasonable control, including, without limitation, Internet outages, communications outages, fire, flood, war, or force majeure.</p>
-
-<p>These terms do not affect your statutory rights as a consumer which are available to you.</p>
-
-<p>Subject as aforesaid, to the maximum extent permitted by law, Flickzit excludes liability for any loss or damage of any kind howsoever arising, including without limitation any direct, indirect, or consequential loss whether or not such arises out of any problem you notify to Flickzit and Flickzit shall have no liability to pay any money by way of compensation, including without limitation all liability in relation to:</p>
-
-<ul>
-    <li>Any incorrect or inaccurate information on the platform.</li>
-    <li>The infringement by any person of any Intellectual Property Rights of any third party caused by their use of the platform or any product purchased through the platform.</li>
-    <li>Any loss or damage resulting from your use or the inability to use the platform or resulting from unauthorized access to, or alteration of your transmissions or data in circumstances which are beyond our control.</li>
-    <li>Any loss of profit, wasted expenditure, corruption or destruction of data, or any other loss which does not directly result from something we have done wrong.</li>
-    <li>Any amount or kind of loss or damage due to viruses or other malicious software that may infect a user's computer equipment, software, data, or other property caused by persons accessing or using content from the platform or from transmissions via emails or attachments received from Flickzit.</li>
-    <li>All representations, warranties, conditions, and other terms which but for this notice would have effect.</li>
-</ul>
-
-<h2>12. INDEMNIFICATION</h2>
-
-<p>You agree to defend and indemnify Flickzit and any of their directors, employees, and agents from and against any claims, causes of action, demands, recoveries, losses, damages, fines, penalties, or other costs or expenses of any kind or nature including but not limited to reasonable legal and accounting fees, brought by third parties as a result of:</p>
-
-<ul>
-    <li>Your breach of this agreement or the documents referenced herein.</li>
-    <li>Your violation of any law or the rights of a third party.</li>
-    <li>Your use of the platform.</li>
-</ul>
-
-<h2>13. CHANGES</h2>
-
-<p>We may change the platform and these terms at any time, in our sole discretion and without notice to you. You are responsible for remaining knowledgeable about these terms. Your continued use of the platform constitutes your acceptance of any changes to these terms, and any changes will supersede all previous versions of the terms. Unless otherwise specified herein, all changes to these terms apply to all users and take effect.</p>
-
-<h2>14. PERSONAL DATA</h2>
-
-<p>Any personal information you submit in connection with your use of the platform as a user will be used in accordance with our privacy policy. See our <a href="#">privacy policy</a>.</p>
-
-<h2>15. INTEGRATION CLAUSE</h2>
-
-<p>This agreement, together with the privacy policy and any other legal notices published by Flickzit, shall constitute the entire agreement between you and Flickzit concerning and governs your use of the platform.</p>
-
-<h2>16. SEVERABILITY</h2>
-
-<p>If any section of these terms is held invalid, illegal, or unenforceable, the validity, legality, and enforceability of the remaining provisions shall not in any way be affected or impaired. Our failure to enforce or delay in enforcing any provision of these terms at any time does not waive our right to enforce the same or any other provision in the future.</p>
-
-<h2>17. FORCE MAJEURE</h2>
-
-<p>Flickzit shall not be liable for any failure to perform due to causes beyond its reasonable control, including, without limitation, fortuitous events, acts of civil authorities, acts of military authorities, riots, embargoes, acts of nature and natural disasters, and other acts that may be due to unforeseen circumstances.</p>
-
-<h2>18. TERMINATION</h2>
-
-<p>Both the user and Flickzit acknowledge that failure to comply with these terms and conditions may result in termination of the agreement between both parties.</p>
-
-<p><strong>In case of non-compliance by the user:</strong> If the user fails to comply with any of the terms set forth in these terms and conditions, Flickzit reserves the right to unilaterally terminate the user's access to and use of the platform. Flickzit may take this action without prior notice, and the user will automatically lose all rights to access and use the platform. Furthermore, Flickzit shall not be liable for any loss of data or information associated with the user's account.</p>
-
-<p><strong>In case of non-compliance by Flickzit:</strong> If Flickzit fails to comply with its obligations under the agreed terms and conditions, the user shall be entitled to terminate the agreement and stop using the platform. The user shall notify Flickzit in writing of the breach and allow a reasonable time for Flickzit to remedy the situation. If Flickzit does not remedy the breach within the set period, the user may proceed with the termination of the agreement.</p>
-
-<p>Termination of the agreement shall not release either party from any obligations and liabilities that have arisen prior to the date of termination.</p>
-
-<p>Continued use of the platform after termination of the agreement by either party shall imply acceptance of the conditions set forth in the terms and conditions in effect at that time.</p>
-
-<h2>19. ARBITRATION</h2>
-
-<p>You acknowledge and agree that any dispute, claim, or controversy arising out of or relating to these terms and conditions, whether for breach, termination, performance, interpretation, or validity hereof, as well as your use of the platform as a user, shall preferably be resolved by binding arbitration between Flickzit and you. However, both parties retain the right to bring individual claims in a court of competent jurisdiction if deemed necessary.</p>
-
-<p>In the event of any dispute arising in connection with your use of the platform as a user, or breach of these terms and conditions, both parties agree to seek resolution through an arbitration process. This process will be conducted before a recognized and respected arbitration entity, selected by mutual agreement of both parties and following the applicable commercial arbitration rules.</p>
-
-<p>In addition, the user agrees, to the extent permitted by applicable law, not to initiate, join, or participate in class action lawsuits associated with any claim, dispute, or controversy that may arise in connection with the use of the platform as a user. This commitment seeks to promote a more agile and personalized resolution of any conflict, favoring arbitration and individual legal actions over class actions.</p>
-
-<h2>20. APPLICABLE LAW AND JURISDICTION</h2>
-
-<p>Although the platform is available globally, these terms and conditions shall be governed by and construed in accordance with the laws of Norway and the European Union. Any dispute relating to these terms shall be subject to the exclusive jurisdiction of the courts of Norway. This applies unless binding arbitration is agreed to in the applicable section.</p>
-
-<h2>21. FINAL PROVISIONS</h2>
-
-<p>Your use of our platform and purchase of our products is conditioned upon your acceptance of and compliance with all of the terms and conditions set forth. This authorization to use our services does not extend to jurisdictions where these provisions are not respected or applied.</p>
-
-<p>Our commitment to compliance with these terms is strictly governed by applicable laws and legal process. Importantly, these terms do not restrict our ability to comply with legal or governmental requirements, including but not limited to those relating to law enforcement and the use of our platform. Information provided or collected in connection with your use of the platform and purchase of our products will be subject to these requirements.</p>
-
-<p>In the event that any provision of these terms and conditions shall be declared invalid, illegal, or unenforceable by any court or competent authority, such decision shall not affect the validity or enforceability of the remaining provisions. The failure or delay in enforcing any of these terms and conditions by us at any time shall not constitute a waiver of our rights to enforce such provision, or any other provision, in the future.</p>
-
-<p>We reserve all rights not expressly granted herein, while at all times maintaining the protection of and respect for our intellectual property rights and prerogatives.</p>
-
-<h2>22. CONTACT INFORMATION</h2>
-
-<p>If you have questions or concerns about these terms or the products, please contact us through our contact information below:</p>
-
-<p><strong>Fleischer App Studio - Flickzit</strong><br>
-Email: <a href="mailto:contactflickzit@gmail.com">contactflickzit@gmail.com</a></p>
-
-        </div>
-
-        <!-- Consent Checkbox -->
-        <label id="consent-label">
-            <input type="checkbox" id="termsConsent" name="termsConsent" required>
-            I agree to the Terms and Conditions
-        </label>
-
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form id="signupForm" method="POST" action="your-redirect-uri">
+            <!-- Other form fields like email, password, etc. -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <!-- Terms of Service Checkbox -->
+            <div class="form-group">
+                <input type="checkbox" id="tosCheckbox" name="tosAccepted" required>
+                <label for="tosCheckbox">I agree to the <a href="path-to-your-tos" target="_blank">Terms of Service</a></label>
+            </div>
+
+            <button type="submit" id="submitBtn">Sign Up</button>
+        </form>
     </div>
-
-    <!-- JavaScript to integrate the consent checkbox into the form -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait until the Azure AD B2C form is loaded
-            var checkExist = setInterval(function() {
-                var b2cForm = document.querySelector('form');
-                if (b2cForm) {
-                    clearInterval(checkExist);
-
-                    // Move the Terms of Service content into the form
-                    var termsContainer = document.getElementById('terms-container');
-                    b2cForm.appendChild(termsContainer);
-
-                    // Move the consent checkbox into the form
-                    var consentLabel = document.getElementById('consent-label');
-                    b2cForm.appendChild(consentLabel);
-
-                    // Adjust the error message placement
-                    var errorDiv = document.getElementById('error');
-                    b2cForm.insertBefore(errorDiv, b2cForm.firstChild);
-                }
-            }, 100);
-        });
-    </script>
-
 </body>
 </html>
 
