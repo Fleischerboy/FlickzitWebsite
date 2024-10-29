@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Flickzit - Sign in or Sign up</title>
+    <title>Flickzit - Sign In or Sign Up</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="locale" content="en">
@@ -26,7 +26,7 @@
 
         .container {
             max-width: 400px;
-            margin: 80px auto;
+            margin: 60px auto;
             padding: 40px 30px;
             background-color: #fff;
             border-radius: 10px;
@@ -35,7 +35,7 @@
 
         .container .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .container .logo img {
@@ -44,9 +44,10 @@
 
         .container h1 {
             text-align: center;
-            font-size: 1.8em;
-            color: #004D40;
+            font-size: 1.6em;
+            color: #0078d4; /* Changed to a blue color */
             margin-bottom: 10px;
+            line-height: 1.2;
         }
 
         .container p {
@@ -60,7 +61,7 @@
         #api input, #api select {
             width: 100%;
             padding: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 16px;
@@ -83,13 +84,30 @@
             font-size: 18px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-top: 10px;
         }
 
         #api button[type="submit"]:hover {
             background-color: #009688;
         }
 
-        #api a {
+        /* Repositioned the forgot password link */
+        #api a.forgot-password {
+            display: block;
+            text-align: right;
+            color: #00BFA5;
+            text-decoration: none;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        #api a.forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* Style the sign-up link separately */
+        #api a.sign-up {
             display: block;
             text-align: center;
             color: #00BFA5;
@@ -98,7 +116,7 @@
             font-size: 0.9em;
         }
 
-        #api a:hover {
+        #api a.sign-up:hover {
             text-decoration: underline;
         }
 
@@ -112,24 +130,12 @@
             font-size: 16px;
             color: #fff;
             cursor: pointer;
+            background-color: #004D40; /* Changed to match your brand color */
+            transition: background-color 0.3s;
         }
 
-        /* Example social provider button styles */
-        #api #GoogleExchange {
-            background-color: #db4437; /* Google Red */
-        }
-
-        #api #GoogleExchange:hover {
-            background-color: #c33d2e;
-        }
-
-        /* Error message styling */
-        #api span.error {
-            color: #d32f2f;
-            font-size: 14px;
-            margin-top: -15px;
-            margin-bottom: 15px;
-            display: block;
+        #api button.social-button:hover {
+            background-color: #00332d;
         }
 
         /* Adjust placeholder text color */
@@ -137,11 +143,32 @@
             color: #999;
         }
 
-        /* Adjust the 'Forgot Password' and 'Sign up now' links */
-        #api a.forgot-password,
-        #api a.sign-up {
-            margin-top: 10px;
-            font-size: 0.9em;
+        /* Error message styling */
+        #api span.error {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 480px) {
+            .container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .container h1 {
+                font-size: 1.4em;
+            }
+
+            #api button.social-button,
+            #api button[type="submit"],
+            #api input {
+                font-size: 16px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -172,23 +199,38 @@
                 passwordField.placeholder = 'Password';
             }
 
+            // Reposition 'Forgot Password' link
+            var forgotPasswordLink = document.querySelector('#api a.forgot-password');
+            if (forgotPasswordLink) {
+                forgotPasswordLink.style.textAlign = 'right';
+                forgotPasswordLink.style.marginTop = '-10px';
+                forgotPasswordLink.style.marginBottom = '20px';
+            }
+
+            // Adjust text for 'Forgot Password' and 'Sign up now' links
+            var signUpLink = document.querySelector('#api a.sign-up');
+            if (signUpLink) {
+                signUpLink.style.marginTop = '20px';
+            }
+
             // Change submit button text
             var submitButton = document.querySelector('#api button[type="submit"]');
             if (submitButton) {
                 submitButton.textContent = 'Sign In';
             }
 
-            // Style social buttons if needed
+            // Style social buttons
             var socialButtons = document.querySelectorAll('#api button.social-button');
             socialButtons.forEach(function(button) {
-                button.style.width = '100%';
-                button.style.padding = '14px';
+                button.style.backgroundColor = '#004D40'; /* Match your brand color */
                 button.style.marginBottom = '15px';
-                button.style.border = 'none';
-                button.style.borderRadius = '8px';
-                button.style.fontSize = '16px';
                 button.style.color = '#fff';
-                button.style.cursor = 'pointer';
+                button.addEventListener('mouseover', function() {
+                    button.style.backgroundColor = '#00332d';
+                });
+                button.addEventListener('mouseout', function() {
+                    button.style.backgroundColor = '#004D40';
+                });
             });
 
             // Adjust text for social buttons
@@ -197,6 +239,10 @@
                 googleButton.textContent = 'Continue with Google';
             }
 
+            var facebookButton = document.querySelector('#api #FacebookExchange');
+            if (facebookButton) {
+                facebookButton.textContent = 'Continue with Facebook';
+            }
         });
     </script>
 </body>
