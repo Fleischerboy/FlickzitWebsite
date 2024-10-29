@@ -14,192 +14,22 @@
 
     <!-- Custom CSS styles -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        /* ... [Your existing CSS styles] ... */
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background: linear-gradient(135deg, #6F42C1 0%, #007BFF 100%);
-            background-attachment: fixed;
-        }
-
-        .container {
-            max-width: 400px;
-            margin: 60px auto;
-            padding: 40px 30px;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo img {
-            max-width: 120px;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 1.8em;
-            color: #007BFF;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        p {
-            text-align: center;
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        /* Style the controls injected by Azure AD B2C */
-        #api input, #api select {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-            background-color: #f1f1f1;
-            color: #333;
-        }
-
-        #api input:focus {
-            background-color: #fff;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
-        }
-
-        #api button.button {
-            width: 100%;
-            padding: 14px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
+        /* Increase font sizes for better readability */
+        body, input, select, button, label, .tos-container {
             font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
         }
 
-        #api button.button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Terms of Service content styling */
-        .tos-container {
-            max-height: 200px;
-            overflow-y: scroll;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .tos-container::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .tos-container::-webkit-scrollbar-thumb {
-            background-color: #ccc;
-            border-radius: 4px;
-        }
-
-        /* Terms consent checkbox */
-        #api .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #555;
-        }
-
-        #api .checkbox-container input[type="checkbox"] {
-            margin-right: 10px;
-            margin-top: 3px;
-            width: auto;
-            cursor: pointer;
-        }
-
-        #api .checkbox-container label {
-            cursor: pointer;
-        }
-
-        /* Remove list dots from field titles */
-        #api ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin: 0;
-        }
-
-        #api li {
-            margin-bottom: 0;
-        }
-
-        /* Fix input alignment */
-        #api > div {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Error message styling */
-        #api span.error {
-            color: #d9534f;
-            font-size: 14px;
-            margin-top: -15px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        /* Adjust placeholder text color */
-        #api input::placeholder {
-            color: #999;
-        }
-
-        /* Responsive design for mobile */
-        @media (max-width: 480px) {
-            .container {
-                margin: 20px;
-                padding: 30px 20px;
-            }
-
-            h1 {
-                font-size: 1.6em;
-            }
-
-            #api button.button,
-            #api input {
-                font-size: 16px;
-                padding: 12px;
-            }
-
-            .tos-container {
-                max-height: 150px;
-                padding: 10px;
-            }
+        /* Ensure inputs and buttons use full width */
+        #api input, #api button {
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <!-- Replace 'flickzit-logo.png' with the path to your actual logo image -->
-            <img src="flickzit-logo.png" alt="Flickzit Logo">
-        </div>
-        <h1>Create Your Account</h1>
-        <p>Join Flickzit and start your journey</p>
+        <!-- ... [Your existing HTML content] ... -->
 
         <!-- Azure AD B2C will inject the UI controls into this div -->
         <div id="api"></div>
@@ -207,7 +37,7 @@
 
     <!-- Custom JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        function selfAsserted(page) {
             // Change placeholder text
             var emailField = document.querySelector('#api input[name="email"]');
             if (emailField) {
@@ -220,8 +50,14 @@
             }
 
             // Modify the terms consent checkbox
-            var termsConsentField = document.querySelector('#api input[name="extension_termsConsent"]');
+            var termsConsentField = document.querySelector('#api input[type="checkbox"][name^="termsConsent"]');
+            if (!termsConsentField) {
+                // Try alternative selectors
+                termsConsentField = document.querySelector('#api input[type="checkbox"][name^="extension_termsConsent"]');
+            }
             if (termsConsentField) {
+                console.log('Found termsConsentField:', termsConsentField);
+
                 // Remove the parent list item to eliminate any list dots
                 var parentLi = termsConsentField.closest('li');
                 if (parentLi) {
@@ -237,7 +73,7 @@
                 tosContent.innerHTML = `
                     <!-- Insert your Terms of Service content here -->
                     <h2>Terms of Service</h2>
-                    <p>Welcome to Flickzit. These terms and conditions outline the rules and regulations for the use of Flickzit's services...</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
                     <!-- Continue with the rest of your ToS content -->
                 `;
                 tosContainer.appendChild(tosContent);
@@ -257,34 +93,15 @@
                 tosContainer.appendChild(checkboxContainer);
 
                 // Insert the ToS container before the submit button
-                var submitButton = document.querySelector('#api button.button');
+                var submitButton = document.querySelector('#api button[type="submit"]');
                 if (submitButton) {
                     submitButton.parentNode.insertBefore(tosContainer, submitButton);
                 }
+            } else {
+                console.error('termsConsentField not found');
             }
 
-            // Fix input alignment
-            var apiDivs = document.querySelectorAll('#api > div');
-            apiDivs.forEach(function(div) {
-                div.style.display = 'flex';
-                div.style.flexDirection = 'column';
-            });
-
-            // Remove any list styles from ul elements
-            var ulElements = document.querySelectorAll('#api ul');
-            ulElements.forEach(function(ul) {
-                ul.style.listStyleType = 'none';
-                ul.style.paddingLeft = '0';
-                ul.style.margin = '0';
-            });
-
-            // Increase font size for better readability
-            var allTextElements = document.querySelectorAll('#api input, #api label, #api button.button, .tos-container, #api .checkbox-container');
-            allTextElements.forEach(function(element) {
-                element.style.fontSize = '16px';
-            });
-
-            // Adjust verification buttons and inputs
+            // Adjust verification inputs and buttons
             var verificationButtons = document.querySelectorAll('#api button');
             verificationButtons.forEach(function(button) {
                 button.style.width = '100%';
@@ -292,7 +109,7 @@
                 button.style.marginBottom = '20px';
                 button.style.border = 'none';
                 button.style.borderRadius = '8px';
-                button.style.fontSize = '16px';
+                button.style.fontSize = '18px';
                 button.style.fontWeight = '600';
                 button.style.cursor = 'pointer';
                 button.style.backgroundColor = '#007BFF';
@@ -314,13 +131,22 @@
                 input.style.marginBottom = '20px';
                 input.style.border = 'none';
                 input.style.borderRadius = '8px';
-                input.style.fontSize = '16px';
+                input.style.fontSize = '18px';
                 input.style.boxSizing = 'border-box';
                 input.style.backgroundColor = '#f1f1f1';
                 input.style.color = '#333';
             });
 
-        });
+            // Increase font sizes for better readability
+            var allTextElements = document.querySelectorAll('#api input, #api label, #api button, .tos-container, #api .checkbox-container');
+            allTextElements.forEach(function(element) {
+                element.style.fontSize = '18px';
+            });
+        }
+
+        function onFailure(error) {
+            console.error('Error:', error);
+        }
     </script>
 </body>
 </html>
