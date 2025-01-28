@@ -70,6 +70,30 @@
       header ul li a:hover {
         color: var(--primary-color);
       }
+
+      /* Hamburger Menu Styles */
+      .hamburger {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001; /* Above the navigation */
+      }
+
+      .hamburger .bar {
+        height: 3px;
+        width: 100%;
+        background-color: var(--text-color);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      /* Hero Section */
       .hero {
         background: url('/images/Flickzit_Skru_Loginnscreen.png')
           no-repeat center center/cover;
@@ -123,6 +147,8 @@
         width: 20px;
         height: 20px;
       }
+
+      /* Sections */
       .section {
         padding: 80px 20px;
         text-align: center;
@@ -176,6 +202,8 @@
         font-size: 16px;
         color: #555;
       }
+
+      /* Footer */
       footer {
         background: var(--white-color);
         color: var(--text-color);
@@ -191,6 +219,7 @@
       footer a:hover {
         text-decoration: underline;
       }
+
       /* Scroll to Top Button */
       #scrollTopBtn {
         position: fixed;
@@ -210,55 +239,115 @@
       #scrollTopBtn:hover {
         background: var(--secondary-color);
       }
+
       /* Responsive Design */
       @media (max-width: 768px) {
+        .hamburger {
+          display: flex; /* Show hamburger on mobile */
+        }
+
+        header nav {
+          position: relative; /* For positioning the dropdown */
+        }
+
+        header ul {
+          display: none; /* Hide navigation links by default */
+          flex-direction: column;
+          width: 100%;
+          background-color: var(--white-color);
+          position: absolute;
+          top: 60px; /* Adjust based on header height */
+          left: 0;
+          padding: 20px 0;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          z-index: 999; /* Ensure it stays below the hamburger */
+        }
+
+        header ul.active {
+          display: flex; /* Show navigation when active */
+        }
+
+        header ul li {
+          margin: 10px 0;
+          text-align: center;
+        }
+
+        header ul li a {
+          font-size: 18px;
+          padding: 10px 20px;
+          display: block;
+        }
+
         header {
           padding: 15px 20px;
         }
+
         header .logo {
           font-size: 24px;
         }
-        header ul li {
-          margin: 0 10px;
-        }
+
         .hero h1 {
           font-size: 42px;
         }
+
         .section h2 {
           font-size: 32px;
         }
       }
+
       @media (max-width: 480px) {
         header nav {
           flex-direction: column;
           align-items: flex-start;
         }
+
         header ul {
           flex-direction: column;
           width: 100%;
         }
+
         header ul li {
           margin: 10px 0;
         }
+
         .hero {
           padding: 120px 20px 80px;
         }
+
         .hero h1 {
           font-size: 32px;
         }
+
         .hero p {
           font-size: 16px;
         }
+
         .cta-button {
           font-size: 16px;
           padding: 12px 30px;
         }
+
         .section h2 {
           font-size: 28px;
         }
+
         .section p {
           font-size: 16px;
         }
+      }
+
+      /* Optional: Animate Hamburger to Cross When Active */
+      .hamburger.is-active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.is-active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.is-active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      .hamburger .bar {
+        transition: all 0.3s ease;
       }
     </style>
   </head>
@@ -266,6 +355,11 @@
     <header>
       <nav>
         <div class="logo">Flickzit</div>
+        <button class="hamburger" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -372,7 +466,25 @@
     <script>
       // Scroll to Top Button
       const scrollTopBtn = document.getElementById('scrollTopBtn');
+      const navMenu = document.querySelector('header ul');
+      const hamburger = document.querySelector('.hamburger'); // Defined here
 
+      // Hamburger Menu Toggle
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('is-active'); // Optional: for animation
+      });
+
+      // Close the menu when a link is clicked (optional)
+      const navLinks = document.querySelectorAll('header ul li a');
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          hamburger.classList.remove('is-active'); // Optional
+        });
+      });
+
+      // Scroll Function
       window.onscroll = function () {
         scrollFunction();
       };
