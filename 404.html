@@ -7,9 +7,22 @@
   <script>
     (function () {
       var path = window.location.pathname;
-      if (path.indexOf('/s/') === 0) {
-        window.location.replace('https://apps.apple.com/app/flickzit/id6482294334');
+      if (path.indexOf('/s/') !== 0) {
+        document.getElementById('message').textContent = 'Page not found.';
+        return;
       }
+      var payload = path.substring(3);
+      var appUrl = 'myworkoutflixit://s/' + payload;
+      var storeUrl = 'https://apps.apple.com/app/flickzit/id6482294334';
+      window.location.href = appUrl;
+      setTimeout(function () {
+        document.getElementById('message').textContent =
+          "Don't have Flickzit yet? Download it to view shared drills.";
+        document.getElementById('store-link').style.display = 'inline-block';
+      }, 1500);
+      setTimeout(function () {
+        window.location.href = storeUrl;
+      }, 3000);
     })();
   </script>
   <style>
@@ -48,8 +61,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Page Not Found</h1>
-    <p>Sorry, the page you're looking for doesn't exist.</p>
+    <h1>Flickzit</h1>
+    <p id="message">Opening Flickzit…</p>
+    <p><a id="store-link" href="https://apps.apple.com/app/flickzit/id6482294334" style="display:none;">Download on the App Store</a></p>
     <p><a href="/">Go back to Flickzit</a></p>
   </div>
 </body>
