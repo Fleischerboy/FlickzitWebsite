@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["6C7HYZRL2L.com.realphila.WorkOutWiz"],
+        "paths": ["/s/*"]
+      }
+    ]
+  }
+}
