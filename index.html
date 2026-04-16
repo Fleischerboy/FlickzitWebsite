@@ -142,6 +142,15 @@
       .cta-button:hover {
         background: var(--secondary-color);
       }
+      .cta-button.cta-secondary {
+        background: transparent;
+        border: 2px solid var(--white-color);
+        margin-left: 15px;
+      }
+      .cta-button.cta-secondary:hover {
+        background: var(--white-color);
+        color: var(--secondary-color);
+      }
       .cta-button img {
         margin-left: 10px;
         width: 20px;
@@ -290,7 +299,13 @@
           font-size: 42px;
         }
 
-        .hero {
+        .hero .hero-content .cta-button {
+          display: block;
+          margin: 10px auto;
+          width: fit-content;
+        }
+        .cta-button.cta-secondary {
+          margin-left: 0;
         }
         .section h2 {
           font-size: 32px;
@@ -379,7 +394,8 @@
           models. Perfect for aspiring gymnasts and athletes at any
           level.
         </p>
-        <a href="#features" class="cta-button">Learn More</a>
+        <a href="https://apps.apple.com/app/flickzit/id6482294334" class="cta-button" target="_blank" rel="noopener">Download on the App Store</a>
+        <a href="#features" class="cta-button cta-secondary">Learn More</a>
       </div>
     </section>
 
