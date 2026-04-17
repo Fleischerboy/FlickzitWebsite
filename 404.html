@@ -12,23 +12,10 @@
         return;
       }
       var payload = path.substring(3);
-      var appUrl = 'myworkoutflixit://s/' + payload;
-      var storeUrl = 'https://apps.apple.com/app/flickzit/id6482294334';
-      var storeTimer = null;
-      window.location.href = appUrl;
-      setTimeout(function () {
-        document.getElementById('message').textContent =
-          "Don't have Flickzit yet? Download it to view shared drills.";
-        document.getElementById('store-link').style.display = 'inline-block';
-      }, 1500);
-      storeTimer = setTimeout(function () {
-        window.location.href = storeUrl;
-      }, 3000);
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden && storeTimer) {
-          clearTimeout(storeTimer);
-        }
-      });
+      window.location.href = 'myworkoutflixit://s/' + payload;
+      document.getElementById('message').textContent =
+        "Don't have Flickzit yet? Download it to view shared drills.";
+      document.getElementById('store-link').style.display = 'inline-block';
     })();
   </script>
   <style>
