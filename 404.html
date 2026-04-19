@@ -15,10 +15,7 @@
         "Don't have Flickzit yet? Download it to view shared drills.";
       document.getElementById('store-link').style.display = 'inline-block';
       var payload = path.substring(3);
-      var iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = 'myworkoutflixit://s/' + payload;
-      document.body.appendChild(iframe);
+      window.location.href = 'myworkoutflixit://s/' + payload;
     });
   </script>
   <style>
