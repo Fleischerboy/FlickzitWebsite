@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flickzit</title>
   <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', function () {
       var path = window.location.pathname;
       if (path.indexOf('/s/') !== 0) {
         document.getElementById('message').textContent = 'Page not found.';
         return;
       }
-      var payload = path.substring(3);
-      window.location.href = 'myworkoutflixit://s/' + payload;
       document.getElementById('message').textContent =
         "Don't have Flickzit yet? Download it to view shared drills.";
       document.getElementById('store-link').style.display = 'inline-block';
-    })();
+      var payload = path.substring(3);
+      var iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = 'myworkoutflixit://s/' + payload;
+      document.body.appendChild(iframe);
+    });
   </script>
   <style>
     body {
